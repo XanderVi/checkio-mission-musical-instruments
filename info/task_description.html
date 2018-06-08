@@ -1,0 +1,41 @@
+<p>
+You are the manager of the music band which uses the next musical instruments:
+Guitar, Drums, Piano, Flute, which make this sounds: ‘guitar music’, ‘drums music’, ‘piano music’, ‘flute music’. Sometimes the instrumets break down and you have to repair them, but the rehearsals must go on. That's why you have found the special Digital musical instrument which can play its own music ('digital music') and also can imitate the sound of the any other instrument.<br>
+Your task is to create classes for all of the instruments and the adapters which could help to play sounds of the instruments with Digital.<br>
+In this mission you could use this design pattern - <a href='https://en.wikipedia.org/wiki/Adapter_pattern'>Adapter</a>.
+</p>
+
+<p>
+<strong>Examples</strong>:
+<pre class="brush: python">
+Guitar().play_guitar() == "guitar music"
+Drums().play_drums() == "drums music"
+Piano().play_piano() == "piano music"
+Flute().play_flute() == "flute music"
+Digital().play_digital() == "digital music"
+GuitarAdapter().play_digital() == "guitar music"
+DrumsAdapter().play_digital() == "drums music"
+PianoAdapter().play_digital() == "piano music"
+FluteAdapter().play_digital() == "flute music"
+</pre>
+</p>
+<br>
+
+<p>
+    <strong>Input: </strong>methods of the classes of the musical instruments and the adapters.
+</p>
+
+<p>
+    <strong>Output: </strong>right music.
+</p>
+
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Another one design pattern for more practice in the OOP.
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+    All data are correct.
+</p>

@@ -1,0 +1,35 @@
+class Guitar:
+    def __init__(self):
+        raise NotImplementedError
+
+class Drums:
+    def __init__(self):
+        raise NotImplementedError
+
+class Piano:
+    def __init__(self):
+        raise NotImplementedError
+
+class Flute:
+    def __init__(self):
+        raise NotImplementedError
+
+class Digital:
+    def __init__(self):
+        raise NotImplementedError
+
+if __name__ == '__main__':
+    def json_dict(d):
+        return dict((k, list(v)) for k, v in d.items())
+
+    assert Guitar().play_guitar() == "guitar music"
+    assert Drums().play_drums() == "drums music"
+    assert Piano().play_piano() == "piano music"
+    assert Flute().play_flute() == "flute music"
+    assert Digital().play_digital() == "digital music"
+    assert GuitarAdapter().play_digital() == "guitar music"
+    assert DrumsAdapter().play_digital() == "drums music"
+    assert PianoAdapter().play_digital() == "piano music"
+    assert FluteAdapter().play_digital() == "flute music"
+
+    print("Coding complete? Let's try tests!")
