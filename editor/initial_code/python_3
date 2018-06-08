@@ -1,22 +1,22 @@
 class Guitar:
     def __init__(self):
-        raise NotImplementedError
+        pass
 
 class Drums:
     def __init__(self):
-        raise NotImplementedError
+        pass
 
 class Piano:
     def __init__(self):
-        raise NotImplementedError
+        pass
 
 class Flute:
     def __init__(self):
-        raise NotImplementedError
+        pass
 
 class Digital:
     def __init__(self):
-        raise NotImplementedError
+        pass
 
 if __name__ == '__main__':
     def json_dict(d):
