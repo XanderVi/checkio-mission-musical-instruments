@@ -19,8 +19,6 @@ class Digital:
         pass
 
 if __name__ == '__main__':
-    def json_dict(d):
-        return dict((k, list(v)) for k, v in d.items())
 
     assert Guitar().play_guitar() == "guitar music"
     assert Drums().play_drums() == "drums music"
