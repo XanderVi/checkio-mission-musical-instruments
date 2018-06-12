@@ -63,7 +63,7 @@ def prepare_test(test="", answer=None, middle_code="\n", show_code=None):
             "answer": answer}
 
 TESTS = {
-    "Figures": [
+    "Instruments": [
         prepare_test(test="Guitar().play_guitar()",
                      answer="guitar music"),
         prepare_test(test="Drums().play_drums()",
