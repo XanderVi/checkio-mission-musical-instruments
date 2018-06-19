@@ -1,33 +1,25 @@
-class Guitar:
-    def __init__(self):
-        pass
+class GuitarAdapter(object):
+    pass
 
-class Drums:
-    def __init__(self):
-        pass
+class PianoAdapter(object):
+    pass
 
-class Piano:
-    def __init__(self):
-        pass
+class ViolinAdapter(object):
+    pass
 
-class Flute:
-    def __init__(self):
-        pass
-
-class Digital:
-    def __init__(self):
-        pass
 
 if __name__ == '__main__':
 
-    assert Guitar().play_guitar() == "guitar music"
-    assert Drums().play_drums() == "drums music"
-    assert Piano().play_piano() == "piano music"
-    assert Flute().play_flute() == "flute music"
-    assert Digital().play_digital() == "digital music"
-    assert GuitarAdapter().play_digital() == "guitar music"
-    assert DrumsAdapter().play_digital() == "drums music"
-    assert PianoAdapter().play_digital() == "piano music"
-    assert FluteAdapter().play_digital() == "flute music"
+    song_1 = Guitar("'A thousand years' by Christina Perri")
+    song_2 = Piano("'Nothing else matters' by Metallica")
+    song_3 = Violin("'Princes of the Universe' by Queen")
+
+    guitar_song = GuitarAdapter(song_1)
+    piano_song = PianoAdapter(song_2)
+    violin_song = ViolinAdapter(song_3)
+
+    assert guitar_song.play() == "♮𝄫♮♮♮𝄫𝄫♮𝄫♮♮♮♮𝄫𝄫♮♮♮♮♮♮♮♮♮♮𝄫♮♮𝄫♮𝄫♮♮𝄫♮♮𝄫"
+    assert piano_song.play() == "♭♭♯♭♭♯♭♭♭♯♭♭♯♭♭♯♭♭♯♭♭♭♭♭♭♭♭♯♭♯♭♭♯♭♯"
+    assert violin_song.play() == "♭♭♭~♭♭~♭♭~♭♭♭♭~♭~♭~♭~♭♭~♭♭♭♭♭♭~~~♭"
 
     print("Coding complete? Let's try tests!")

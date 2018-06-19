@@ -1,48 +1,64 @@
 init_code = """
-if not "Guitar" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'Guitar'?")
+class Instrument:
+    def play(self):
+        pass
 
-Guitar = USER_GLOBAL['Guitar']
+class Guitar(object):
+    def __init__(self, name):
+        self.name = name
 
-if not "Drums" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'Drums'?")
+    def play_guitar(self):
+        VOWELS = 'aeiou'
+        new_music = ''
+        for i in self.name.lower():
+            if i in VOWELS:
+                new_music += '𝄫'
+            else:
+                new_music += '♮'
+        return new_music
 
-Drums = USER_GLOBAL['Drums']
+class Piano(object):
+    def __init__(self, name):
+        self.name = name
 
-if not "Piano" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'Piano'?")
+    def play_piano(self):
+        VOWELS = 'aeiou'
+        new_music = ''
+        for i in self.name.lower():
+            if i in VOWELS:
+                new_music += '♯'
+            else:
+                new_music += '♭'
+        return new_music
 
-Piano = USER_GLOBAL['Piano']
+class Violin(object):
+    def __init__(self, name):
+        self.name = name
 
-if not "Flute" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'Flute'?")
-
-Flute = USER_GLOBAL['Flute']
-
-if not "Digital" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'Digital'?")
-
-Digital = USER_GLOBAL['Digital']
+    def play_violin(self):
+        VOWELS = 'aeiou'
+        new_music = ''
+        for i in self.name.lower():
+            if i in VOWELS:
+                new_music += '~'
+            else:
+                new_music += '♭'
+        return new_music
 
 if not "GuitarAdapter" in USER_GLOBAL:
     raise NotImplementedError("Where is 'GuitarAdapter'?")
 
 GuitarAdapter = USER_GLOBAL['GuitarAdapter']
 
-if not "DrumsAdapter" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'DrumsAdapter'?")
-
-DrumsAdapter = USER_GLOBAL['DrumsAdapter']
-
 if not "PianoAdapter" in USER_GLOBAL:
     raise NotImplementedError("Where is 'PianoAdapter'?")
 
 PianoAdapter = USER_GLOBAL['PianoAdapter']
 
-if not "FluteAdapter" in USER_GLOBAL:
-    raise NotImplementedError("Where is 'FluteAdapter'?")
+if not "ViolinAdapter" in USER_GLOBAL:
+    raise NotImplementedError("Where is 'ViolinAdapter'?")
 
-FluteAdapter = USER_GLOBAL['FluteAdapter']
+ViolinAdapter = USER_GLOBAL['ViolinAdapter']
 """
 
 run_test = """
@@ -50,9 +66,9 @@ RET['code_result'] = {}
 """
 
 
-def prepare_test(test="", answer=None, middle_code="\n", show_code=None):
+def prepare_test(test="", answer=None, middle_code="", show_code=None):
     if show_code is None:
-        show_code = middle_code + test
+        show_code = middle_code + "\n" + test
     if not test:
         return_code = "\nRET['code_result'] = ''"
         answer = ''
@@ -63,27 +79,47 @@ def prepare_test(test="", answer=None, middle_code="\n", show_code=None):
             "answer": answer}
 
 TESTS = {
-    "Instruments": [
-        prepare_test(test="Guitar().play_guitar()",
-                     answer="guitar music"),
-        prepare_test(test="Drums().play_drums()",
-                     answer="drums music"),
-        prepare_test(test="Piano().play_piano()",
-                     answer="piano music"),
-        
-        prepare_test(test="Flute().play_flute()",
-                     answer="flute music"),
-        prepare_test(test="Digital().play_digital()",
-                     answer="digital music"),
-        prepare_test(test="GuitarAdapter().play_digital()",
-                     answer="guitar music"),
-
-        prepare_test(test="DrumsAdapter().play_digital()",
-                     answer="drums music"),
-        prepare_test(test="PianoAdapter().play_digital()",
-                     answer="piano music"),
-        prepare_test(test="FluteAdapter().play_digital()",
-                     answer="flute music")
+    "1. Guitar": [
+        prepare_test(middle_code='''song_1 = Guitar("'A thousand years' by Christina Perri")
+g_song_1 = GuitarAdapter(song_1)''',
+                     test="g_song_1.play()",
+                     answer="♮𝄫♮♮♮𝄫𝄫♮𝄫♮♮♮♮𝄫𝄫♮♮♮♮♮♮♮♮♮♮𝄫♮♮𝄫♮𝄫♮♮𝄫♮♮𝄫"),
+        prepare_test(middle_code='''song_2 = Guitar("'Skyfall' by Adele")
+g_song_2 = GuitarAdapter(song_2)''',
+                     test="g_song_2.play()",
+                     answer="♮♮♮♮♮𝄫♮♮♮♮♮♮♮𝄫♮𝄫♮𝄫"),
+        prepare_test(middle_code='''song_3 = Guitar("'In the end' by Linkin Park")
+g_song_3 = GuitarAdapter(song_3)''',
+                     test="g_song_3.play()",
+                     answer="♮𝄫♮♮♮♮𝄫♮𝄫♮♮♮♮♮♮♮♮𝄫♮♮𝄫♮♮♮𝄫♮♮")
+    ],
+    "2. Piano": [
+        prepare_test(middle_code='''song_4 = Piano("'Time' from Inception by Hans Zimmer")
+p_song_4 = PianoAdapter(song_4)''',
+                     test="p_song_4.play()",
+                     answer="♭♭♯♭♯♭♭♭♭♯♭♭♯♭♭♯♭♭♯♯♭♭♭♭♭♭♯♭♭♭♭♯♭♭♯♭"),
+        prepare_test(middle_code='''song_5 = Piano("'My Immortal' by Evanescence")
+p_song_5 = PianoAdapter(song_5)''',
+                     test="p_song_5.play()",
+                     answer="♭♭♭♭♯♭♭♯♭♭♯♭♭♭♭♭♭♯♭♯♭♯♭♭♯♭♭♯"),
+        prepare_test(middle_code='''song_6 = Piano("'When you gone' by Avril Lavigne")
+p_song_6 = PianoAdapter(song_6)''',
+                     test="p_song_6.play()",
+                     answer="♭♭♭♯♭♭♭♯♯♭♭♯♭♯♭♭♭♭♭♯♭♭♯♭♭♭♯♭♯♭♭♯")
+    ],
+    "3. Violin": [
+        prepare_test(middle_code='''song_7 = Violin("'Who wants to live forever' by Queen")
+v_song_7 = ViolinAdapter(song_7)''',
+                     test="v_song_7.play()",
+                     answer="♭♭♭~♭♭~♭♭♭♭♭~♭♭~♭~♭♭~♭~♭~♭♭♭♭♭♭♭~~~♭"),
+        prepare_test(middle_code='''song_8 = Violin("'Space Oddity' by David Bowie")
+v_song_8 = ViolinAdapter(song_8)''',
+                     test="v_song_8.play()",
+                     answer="♭♭♭~♭~♭~♭♭~♭♭♭♭♭♭♭♭~♭~♭♭♭~♭~~"),
+        prepare_test(middle_code='''song_9 = Violin("'Lilium' by Elfen Lied")
+v_song_9 = ViolinAdapter(song_9)''',
+                     test="v_song_9.play()",
+                     answer="♭♭~♭~~♭♭♭♭♭♭~♭♭~♭♭♭~~♭"),
     ]
 
 }
