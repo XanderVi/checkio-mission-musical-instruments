@@ -1,10 +1,10 @@
-class GuitarAdapter(object):
+class GuitarAdapter:
     pass
 
-class PianoAdapter(object):
+class PianoAdapter:
     pass
 
-class ViolinAdapter(object):
+class ViolinAdapter:
     pass
 
 
